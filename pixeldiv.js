@@ -64,21 +64,19 @@
 			$this.data(pluginName, data);
 			
 			// draw image
-			methods.drawPixelDiv.call($this);
+			var img = new Image();
+			img.src = data.imgSRC;
+			img.onload = methods.drawPixelDiv.call($this, img);
 			
 			// add pixelDiv after image
 			$this.after(data.$pixelDiv);
 		},
 		
-		drawPixelDiv : function() {
+		drawPixelDiv : function(img) {
 			var $this = $(this);
 			var data = $this.data(pluginName);
 			
 			var isFirstPixel;
-		
-			// create image from this one given
-			var img = new Image();
-			img.src = data.imgSRC;
 			
 			// draw image onto canvas
 			data.context.drawImage(img, 0, 0 );
