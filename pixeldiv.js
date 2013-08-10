@@ -22,11 +22,10 @@
 					hideIMG : options.hideIMG,
 					pixelSize : options.pixelSize,
 					divID : options.divID,
-					divClass : options.divClass
+					divClass : options.divClass,
 				};
 
 				$this.data(pluginName, data);
-				console.log($this);
 				
 				methods.initCanvas.call($this);
 			}); 
@@ -34,7 +33,7 @@
 		
 		initCanvas : function(){
 			var $this = $(this);
-			var data = $this.data(pluginName);
+			var data = $this.data(pluginName);	
 
 			// create canvas
 			data.$canvas = $('<canvas width="' + $this.width() + '" height="' + $this.height() + '">');
@@ -42,12 +41,12 @@
 			// create div for pixelDiv image
 			data.$pixelDiv = $('<div>').addClass(pluginName);
 			
-			if ( data.pixelID ) {
-				data.$pixelDiv.attr('id',data.pixelID);
+			if ( data.divID ) {
+				data.$pixelDiv.attr('id', data.divID);
 			}
 			
-			if ( data.pixelClass ) {
-				data.$pixelDiv.addClass(data.pixelClass);
+			if ( data.divClass ) {
+				data.$pixelDiv.addClass(data.divClass);
 			}
 			
 			// add canvas after image
@@ -118,7 +117,7 @@
 				  .css({
 					  'width' : data.pixelSize,
 					  'height' : data.pixelSize,
-					  'background' : 'rgb(' + pixelArray.data[0] + ',' + pixelArray.data[1] + ',' + pixelArray.data[2] + ')',
+					  'background-color' : 'rgb(' + pixelArray.data[0] + ',' + pixelArray.data[1] + ',' + pixelArray.data[2] + ')',
 					  'float' : 'left'
 				  });
 			

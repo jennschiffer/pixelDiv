@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+	<title>pixeldiv</title>
+	<style type="text/css">
+		html { margin: 0; padding: 0; border-top: 10px solid #399; }
+		body { font-family: Helvetica, Arial, sans-serif; color: #333; }
+		pre { background: #efefef; padding: 10px; width: 90%; min-width: 900px; }
+		
+		h4 { padding: 5px; background: #c99; color: #fff; }
+		
+		#portrait-css div {
+			-moz-border-radius: 20px;
+			-webkit-border-radius: 20px;
+			border-radius: 20px;
+		}
+		
+		.clearfix:before, 
+		.clearfix:after { content: ""; display: table; }
+		.clearfix:after { clear: both; }
+		.clearfix { zoom: 1; }
+	</style>
+</head>
+
+<body>
+
+<a href="https://github.com/jennschiffer/pixelDiv"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+
+
+
+
+<h1>pixelDiv</h1>
+<h2>a jQuery plugin that turns images into divs written by <a href="http://twitter.com/jennschiffer">jenn schiffer</a></h2>
+
+
+
+
+
+<h4>what is this? why?</h4>
+
+<p>I wanted to make automagical 8-bit portraits from pictures, so I made this plugin to take images on a page and replace them with a div box full of smaller div boxes representing each pixel. With an image made of HTML, you can use CSS to manipulate some or all of the "pixels." Wow.</p>
+
+
+
+
+
+<h4>here's an example</h4>
+
+<p>Here's a 16 x 16 pixel image, a palette of all 8-bit colors. Cool.</p>
+
+<img src="example.png" id="8bit-colors" />
+
+<p>It's tiny, because each color is one pixel. I'm going to call the pixelDiv plugin to make this all html and CSS.</p>
+
+<pre>$('img.small-example').pixelDiv({
+    hideIMG : true,			// sets whether to hide the original image after generating pixelDiv; default: true
+    pixelSize : 1,			// sets the pixel width and height of the pixelDiv "pixels"; default: 1
+    divID : $(this).attr('id'),		// sets an ID to the pixelDiv; default: none
+    divClass : 'example-div'		// sets a class to the pixelDiv; default: just "pixelDiv"
+});</pre>
+
+<p>The following is a div box filled with div boxes for each pixel:</p>
+
+<img src="example.png" id="8bit-colors" class="small-example" />
+
+<p>Don't believe me? View the source, juggalo.</p>
+
+
+
+
+
+<h4>another example</h4>
+
+<p>It's not as fun when you set the pixelSize to be 1, so let's set it to be 25:</p>
+
+<pre>$('img.large-example').pixelDiv({
+    pixelSize : 25,			// the width and height of each "pixel" will be 25px
+});</pre>
+
+<img src="example.png" id="8bit-colors" class="large-example" />
+
+<p>Cool, much better.</p>
+
+
+
+
+<h4>so now what?</h4>	
+		
+<p>You can take a photo and make it into an instant 8-bit'ish/pixel portrait.</p>
+
+<img src="example-portrait.png" id="portrait" class="portrait-example" />
+
+<p>You can use JavaScript and CSS to manipulate some or all of the pixelDiv pixels. Like making the pixels round with border-radius:</p>
+
+<img src="example-portrait.png" id="portrait-css" class="portrait-example-css" />
+
+
+
+
+
+<h4>what sucks about this plugin?</h4>
+
+<p>The more pixels, the longer it will take to process! I originally did this all with PHP and, being server-side, it's so much faster. But this is a jQuery plugin. I don't know, just use small images and not a ton of them on the same page. Use your gahdamn brain is all I'm saying.</p>
+
+<p>Use a <a href="http://nicolasgallagher.com/micro-clearfix-hack/" target="_blank">clearfix hack</a> on each pixelDiv because the pixels are floating left in the pixelDiv (try using CSS to float right for mirror fun!). If I did inline-block display instead of float, I was getting spaces between each row when the pixels were less than 5px. I'll revisit that later, when my heartburn goes away maybe.</p>	
+		
+		
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="pixeldiv.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	
+	$('img.small-example').pixelDiv({
+		hideIMG : true,	
+		pixelSize : 1,
+		divID : $(this).attr('id'),
+		divClass : 'clearfix',
+	});
+	
+	$('img.large-example').pixelDiv({
+		pixelSize : 25,
+		divClass : 'clearfix',
+	});
+	
+	$('img.portrait-example').pixelDiv({
+		pixelSize : 10,
+		divClass : 'clearfix',
+
+	});
+	
+	$('img.portrait-example-css').pixelDiv({
+		pixelSize : 10,
+		divID : 'portrait-css',
+		divClass : 'clearfix',
+
+	});
+	
+});
+
+</script>
+
+</body>
+</html>
