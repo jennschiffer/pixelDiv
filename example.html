@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+	<title>pixeldiv</title>
+	<style type="text/css">
+	/*	* { margin: 0; padding: 0; }
+		.pixel { width: 20px; height: 20px; position: absolute; z-index: 10; }
+		.pixel:hover { padding: 10px; z-index: 100; s}
+		.break { width: 0; height: 0;  clear: both; }*/
+	</style>
+</head>
+
+<body>
+
+<img src="example.png" id="8bit-colors" />
+
+</body>
+		
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="pixeldiv.js"></script>
+
+<script type="text/javascript">
+
+$(function(){
+	
+	$('img').pixelDiv({
+		
+		hideIMG : true,					// default: true
+		pixelSize : 25,					// default: 1
+		divID : $(this).attr('id'),		// default: none
+		divClass : 'example-div'		// default: just "pixelDiv"
+	});
+	
+});
+
+</script>
+
+</body>
+</html>
