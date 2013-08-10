@@ -1,5 +1,4 @@
 # pixeldiv
-==========
 
 turns your image into a grid of div boxes that are the color of each of your image's pixels
 
