@@ -9,4 +9,4 @@ why?
 3. instant pixelated images, wow cool!
 4. just in case
 
-documentation soon
+[documentation and examples here](http://pancaketheorem.com/stuff/jquery/pixeldiv)
