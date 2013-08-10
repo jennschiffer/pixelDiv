@@ -112,7 +112,8 @@
 			var $pixel = $('<div>');
 			
 			// add position classes and css
-			$pixel.addClass('col-' + pixelColumn)
+			$pixel.addClass('pixelDiv-pixel')
+				  .addClass('col-' + pixelColumn)
 				  .addClass('row-' + pixelRow)
 				  .css({
 					  'width' : data.pixelSize,
