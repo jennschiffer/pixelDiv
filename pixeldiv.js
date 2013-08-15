@@ -1,3 +1,10 @@
+/**
+* pixelDiv
+* 
+* The MIT License (MIT)
+* Copyright (c) 2013 Jenn Schiffer
+*/ 
+
 (function($) {
 
 	var pluginName = 'pixelDiv';
@@ -6,6 +13,8 @@
 		hideIMG : true,
 		pixelSize : 1,
 	};
+	
+	var test = 1;
 
 	var methods = {
 
@@ -68,6 +77,8 @@
 			img.src = data.imgSRC;
 			img.onload = methods.drawPixelDiv.call($this, img);
 			
+			data.img = img;
+			
 			// add pixelDiv after image
 			$this.after(data.$pixelDiv);
 		},
@@ -87,6 +98,7 @@
 				
 				for ( var column = 0; column < data.$canvas.width(); column++ ) {
 					var pixelData = data.context.getImageData(column, row, 1, 1 );
+					//var pixelData = methods.getImageDataFaster.call($this, column, row, 1, 1, data.$canvas.width, data.$canvas.height, img);
 					var pixelDiv = methods.rgbDiv.call($this, pixelData, column, row);
 					
 					if ( isFirstPixel ) {
@@ -123,9 +135,9 @@
 			// return pixel
 			return $pixel;
 		},
+
 	
 	};
-
 
 
     /*** MODULE DEFINITION ***/
