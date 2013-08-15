@@ -32,6 +32,7 @@
 					pixelSize : options.pixelSize,
 					divID : options.divID,
 					divClass : options.divClass,
+					onComplete : options.onComplete,
 				};
 
 				$this.data(pluginName, data);
@@ -49,6 +50,7 @@
 			
 			// create div for pixelDiv image
 			data.$pixelDiv = $('<div>').addClass(pluginName);
+			data.$pixelDiv.css('width', $this.width() * data.pixelSize);
 			
 			if ( data.divID ) {
 				data.$pixelDiv.attr('id', data.divID);
@@ -108,10 +110,16 @@
 					data.$pixelDiv.append(pixelDiv);
 					isFirstPixel = false;
 				}
-			}
+			}		
+
 			
 			// remove canvas
 			data.$canvas.remove();
+			// if a callback onComplete is given, call that function
+			if ( data.onComplete ) {
+				data.onComplete();
+			}
+
 		},
 	
 		rgbDiv : function( pixelArray, pixelColumn, pixelRow ) {
@@ -128,7 +136,7 @@
 				  .css({
 					  'width' : data.pixelSize,
 					  'height' : data.pixelSize,
-					  'background-color' : 'rgb(' + pixelArray.data[0] + ',' + pixelArray.data[1] + ',' + pixelArray.data[2] + ')',
+					  'background-color' : 'rgba(' + pixelArray.data[0] + ',' + pixelArray.data[1] + ',' + pixelArray.data[2] + ', ' + pixelArray.data[3] + ')',
 					  'float' : 'left'
 				  });
 			
